@@ -24,8 +24,14 @@ Build with:
 docker build --platform linux/amd64 -t igraph-forensics .
 ```
 
-Run with:
+Run container with:
 
 ```sh
 docker run --rm -ti --platform linux/amd64 -v $(pwd):/igraph-forensics igraph-forensics
+```
+
+In the container:
+
+```sh
+R -q -f 01-collect.R
 ```
