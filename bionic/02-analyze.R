@@ -2,12 +2,12 @@ options(conflicts.policy = list(warn = FALSE))
 
 library(tidyverse)
 
-version_tags <- readRDS("tags.rds")
+version_tags <- readRDS("bionic/tags.rds")
 
 # commits_list <-
 #   map(version_tags$commit$sha, ~ gh::gh(paste0("/repos/cran/igraph/commits/", .x)))
 
-graphs <- readRDS("graphs-linux.rds")
+graphs <- readRDS("bionic/graphs-linux.rds")
 
 result <-
   graphs |>

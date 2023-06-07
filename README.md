@@ -21,17 +21,18 @@ Trying to install older igraph versions in an Ubuntu 18.04 Docker container.
 Build with:
 
 ```sh
-docker build --platform linux/amd64 -t igraph-forensics .
+docker build --platform linux/amd64 -t igraph-forensics bionic
 ```
 
 Run container with:
 
 ```sh
-docker run --rm -ti --platform linux/amd64 -v $(pwd):/igraph-forensics igraph-forensics
+docker run --rm -ti --platform linux/amd64 -v $(pwd)/bionic:/igraph-forensics igraph-forensics
 ```
 
 In the container:
 
 ```sh
+R -q -f 00-tags.R
 R -q -f 01-collect.R
 ```
