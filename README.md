@@ -27,5 +27,5 @@ docker build --platform linux/amd64 -t igraph-forensics .
 Run with:
 
 ```sh
-docker run --rm -ti --platform linux/amd64 igraph-forensics
+docker run --rm -ti --platform linux/amd64 -v $(pwd):/igraph-forensics igraph-forensics
 ```

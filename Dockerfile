@@ -10,8 +10,4 @@ RUN rig add
 
 RUN R -q -e 'pak::pak(c("purrr", "tibblify", "gh", "dplyr", "callr", "tidyverse"))'
 
-RUN mkdir /igraph-forensics
-
-COPY *.R /igraph-forensics
-
 WORKDIR /igraph-forensics
