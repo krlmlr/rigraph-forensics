@@ -3,14 +3,8 @@
 options(conflicts.policy = list(warn = FALSE))
 
 library(purrr)
-library(dplyr)
 
-tags_list <- gh::gh("/repos/cran/igraph/tags", .limit = Inf)
-tags <- tibblify::tibblify(tags_list)
-
-version_tags <-
-  tags |>
-  filter(grepl("^[0-9]", name))
+version_tags <- readRDS("tags.rds")
 
 create_ring <- function(tag) {
   withr::local_temp_libpaths()
