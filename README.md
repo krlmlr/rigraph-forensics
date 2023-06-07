@@ -36,3 +36,20 @@ In the container:
 R -q -f 00-tags.R
 R -q -f 01-collect.R
 ```
+
+## Build even older versions
+
+```sh
+docker build --platform linux/amd64 -t igraph-forensics-trusty trusty
+```
+
+
+```sh
+docker run --rm -ti --platform linux/amd64 -v $(pwd)/trusty:/igraph-forensics igraph-forensics-trusty
+```
+
+Start process:
+
+```sh
+docker run --rm -ti --platform linux/amd64 -v $(pwd)/trusty:/igraph-forensics igraph-forensics-trusty R -q -f 01-collect.R
+```
