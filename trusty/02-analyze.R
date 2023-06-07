@@ -7,12 +7,14 @@ version_tags <- readRDS("bionic/tags.rds")
 # commits_list <-
 #   map(version_tags$commit$sha, ~ gh::gh(paste0("/repos/cran/igraph/commits/", .x)))
 
-graphs <- readRDS("graphs-linux.rds")
+trusty_graphs <- readRDS("trusty/graphs-linux.rds")
+graphs <- readRDS("bionic/graphs-linux.rds")
 
 result <-
-  graphs |>
+  c(trusty_graphs, graphs) |>
   map("result") |>
   enframe(value = "result") |>
+  filter(row_number() == 1, .by = name) |>
   mutate(success = map_lgl(result, ~ class(.x) == "igraph"))
 
 version_results <-
@@ -62,8 +64,8 @@ delta <-
   mutate(result = map(result, scrub_id)) |>
   mutate(prev_result = lead(result), ) |>
   mutate(same = map2_lgl(result, prev_result, identical, ignore.environment = TRUE)) |>
-  mutate(compare = map2(result, prev_result, waldo::compare)) |>
-  filter(!same)
+  mutate(compare = map2(prev_result, result, waldo::compare)) |>
+  filter(!same, !is.na(prev_name))
 
 delta
 
@@ -75,24 +77,10 @@ important_bad_versions <-
   filter(change_id %in% delta$prev_change_id[delta$prev_change_id != delta$change_id])
 
 important_bad_versions$name
-# 1.0.0
-# 0.5
-# 0.4.5
-# 0.4.4
-# 0.4.3
-# 0.4.2
-# 0.4.1
-# 0.4
-# 0.3.3
-# 0.3.2
-# 0.3.1
-# 0.1.2
-# 0.1.1
 
-important_bad_versions |>
-  pull(result) |>
-  map(attr, "condition") |>
-  map_chr(conditionMessage) |>
-  strsplit("\n") |>
-  map(tail, 20) |>
-  map(fansi::strip_sgr)
+# Need an OS and compilers from 2008 to build those...
+
+delta |>
+  transmute(transition = paste0(prev_name, " -> ", name), compare) |>
+  rev() |>
+  deframe()
