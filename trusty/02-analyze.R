@@ -82,5 +82,5 @@ important_bad_versions$name
 
 delta |>
   transmute(transition = paste0(prev_name, " -> ", name), compare) |>
-  rev() |>
-  deframe()
+  deframe() |>
+  rev()
