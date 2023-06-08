@@ -27,7 +27,7 @@ docker build --platform linux/amd64 -t igraph-forensics-bionic bionic
 Run container with:
 
 ```sh
-docker run --rm -ti --platform linux/amd64 -v $(pwd)/bionic:/igraph-forensics igraph-forensics
+docker run --rm -ti --platform linux/amd64 -v $(pwd)/bionic:/igraph-forensics igraph-forensics-bionic
 ```
 
 In the container:
