@@ -21,7 +21,7 @@ Trying to install older igraph versions in an Ubuntu 18.04 Docker container.
 Build with:
 
 ```sh
-docker build --platform linux/amd64 -t igraph-forensics bionic
+docker build --platform linux/amd64 -t igraph-forensics-bionic bionic
 ```
 
 Run container with:
