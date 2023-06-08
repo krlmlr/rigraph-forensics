@@ -4,7 +4,7 @@ options(conflicts.policy = list(warn = FALSE))
 
 library(purrr)
 
-version_tags <- readRDS("tags.rds")
+version_tags <- readRDS("bionic/tags.rds")
 
 create_ring <- function(tag) {
   withr::local_temp_libpaths()
