@@ -8,14 +8,11 @@ RUN curl -Ls https://github.com/r-lib/rig/releases/download/latest/rig-linux-lat
 
 RUN rig add
 
-RUN R -q -e 'pak::pak(c("purrr", "tibblify", "gh", "dplyr", "callr", "tidyverse"), lib = "/rlib/")'
-
 RUN mkdir -p ~/.R && echo "MAKEFLAGS = -j4" >> ~/.R/Makevars
 
-# FIXME: Remove, doesn't work correctly
-RUN mkdir -p /rlib/{1.4.3,1.4.2,1.4.1,1.4.0,1.3.5,1.3.4,1.3.3,1.3.2,1.3.1,1.3.0,1.2.11,1.2.10,1.2.9,1.2.8,1.2.7,1.2.6,1.2.5,1.2.4.2,1.2.4.1,1.2.4,1.2.3,1.2.2,1.2.1,1.1.2,1.1.1,1.0.1}
+RUN R -q -e 'pak::pak(c("purrr", "tibblify", "gh", "dplyr", "callr", "tidyverse"))'
 
-RUN mkdir -p /rlib/{0.7.1,0.7.0,0.6.6,0.6.5,0.6.5-2,0.6.5-1,0.6.4,0.6,0.6-3,0.6-2,0.6-1,0.5.5,0.5.5-4,0.5.5-3,0.5.5-2,0.5.5-1,0.5.4,0.5.4-1,0.5.3,0.5.2,0.5.2-2,0.5.1,0.2.1,0.2}
+RUN mkdir -p /rlib
 
 RUN R -q -e 'pak::pak("igraph@1.4.3", lib = "/rlib/1.4.3")'
 
