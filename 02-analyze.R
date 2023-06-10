@@ -2,7 +2,7 @@ options(conflicts.policy = list(warn = FALSE))
 
 library(tidyverse)
 
-graphs <- readRDS("bionic/graphs-linux.rds")
+graphs <- readRDS("graphs-linux.rds")
 
 result <-
   graphs |>
@@ -48,10 +48,10 @@ delta <-
   result_dict |>
   mutate(prev_name = lead(name)) |>
   select(name, prev_name, result) |>
-  mutate(result = map(result, scrub_id)) |>
-  mutate(prev_result = lead(result)) |>
-  mutate(same = map2_lgl(result, prev_result, identical, ignore.environment = TRUE)) |>
-  mutate(compare = map2(prev_result, result, waldo::compare)) |>
+  mutate(result_scrubbed = map(result, scrub_id)) |>
+  mutate(prev_result_scrubbed = lead(result_scrubbed)) |>
+  mutate(same = map2_lgl(result_scrubbed, prev_result_scrubbed, identical, ignore.environment = TRUE)) |>
+  mutate(compare = map2(prev_result_scrubbed, result_scrubbed, waldo::compare)) |>
   filter(!same)
 
 delta
@@ -73,4 +73,4 @@ delta |>
     prev_version = prev_name,
     result
   ) |>
-  saveRDS("bionic/igraph-versions.rds")
+  saveRDS("igraph-versions.rds")
