@@ -66,3 +66,11 @@ unclass(result_vec$"1.0.0")[[10]] |>
 
 unclass(result_vec$"1.4.3")[[10]] |>
   as.list(all.names = TRUE)
+
+delta |>
+  select(
+    version = name,
+    prev_version = prev_name,
+    result
+  ) |>
+  saveRDS("bionic/igraph-versions.rds")
