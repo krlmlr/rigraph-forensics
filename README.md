@@ -36,8 +36,12 @@ Run container with:
 docker run --rm -ti --platform linux/amd64 -v $(pwd):/rigraph-forensics rigraph-forensics
 ```
 
-In the container:
+In the container, via functions defined in the image's `~/.Rprofile`:
 
 ```sh
-R -q -f 01-collect.R
+# Run in same R process:
+R -q -e 'run_igraph("1.4.3", make_ring(3, directed = TRUE))'
+
+# Start a new R process:
+R -q -e 'call_igraph("1.4.3", make_ring(3, directed = TRUE))'
 ```

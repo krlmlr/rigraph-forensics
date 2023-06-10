@@ -154,9 +154,11 @@ RUN R -q -e 'pak::pak("igraph@1.4.3", lib = "/rlib/1.4.3")'
 # Development version
 RUN R -q -e 'pak::pak("igraph/rigraph@1e851bafb0097451594ae0e8c7cf96a827b75754", lib = "/rlib/1.5.0")'
 
-RUN ls /rlib | parallel -q R -q -e '.libPaths("/rlib/{}"); packageVersion("igraph"); library(igraph)'
+COPY Rprofile.R /root/.Rprofile
 
-RUN R -q -e '.libPaths("/rlib/1.5.0"); library(igraph); g <- make_ring(3, directed = TRUE); saveRDS(g, "ring.rds")' || true
+RUN ls /rlib | parallel -q R -q -e 'run_igraph("{}", invisible())'
+
+RUN R -q -e 'g <- run_igraph("1.5.0", make_ring(3, directed = TRUE)); saveRDS(g, "ring.rds")'
 
 RUN ls /rlib | parallel -q R -q -e '.libPaths("/rlib/{}"); library(igraph); igraph:::print.igraph(readRDS("ring.rds"))' || true
 
