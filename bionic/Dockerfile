@@ -151,6 +151,8 @@ RUN R -q -e 'pak::pak("igraph@0.1.2", lib = "/rlib/0.1.2")'
 
 RUN R -q -e 'pak::pak("igraph@0.1.1", lib = "/rlib/0.1.1")'
 
+RUN R -q -e 'pak::pak("igraph/rigraph", lib = "/rlib/1.5.0")'
+
 RUN ls /rlib | parallel -q R -q -e '.libPaths(normalizePath("/rlib/{}")); packageVersion("igraph"); library(igraph)' || true
 
 WORKDIR /igraph-forensics
