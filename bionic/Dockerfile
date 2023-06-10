@@ -118,6 +118,10 @@ RUN R -q -e 'pak::pak("igraph@0.2.1", lib = "/rlib/0.2.1")'
 
 RUN R -q -e 'pak::pak("igraph@0.2", lib = "/rlib/0.2")'
 
+COPY "usr-include.patch" /
+
+RUN cd /usr/include && patch -p1 < /usr-include.patch
+
 RUN R -q -e 'try(pak::pak("igraph@1.0.0", lib = "/rlib/1.0.0"))'
 
 RUN R -q -e 'try(pak::pak("igraph@0.5", lib = "/rlib/0.5"))'

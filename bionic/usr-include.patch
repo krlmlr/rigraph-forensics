@@ -1,0 +1,50 @@
+diff --git a/x86_64-linux-gnu/sys/time.h b/x86_64-linux-gnu/sys/time.h
+index 4166a5b..5d40745 100644
+--- a/x86_64-linux-gnu/sys/time.h
++++ b/x86_64-linux-gnu/sys/time.h
+@@ -65,8 +65,6 @@ typedef void *__restrict __timezone_ptr_t;
+    Returns 0 on success, -1 on errors.
+    NOTE: This form of timezone information is obsolete.
+    Use the functions and variables declared in <time.h> instead.  */
+-extern int gettimeofday (struct timeval *__restrict __tv,
+-			 __timezone_ptr_t __tz) __THROW __nonnull ((1));
+
+ #ifdef __USE_MISC
+ /* Set the current time of day and timezone information.
+diff --git a/assert.h b/assert.h
+index 3f54da6..8a1194c 100644
+--- a/assert.h
++++ b/assert.h
+@@ -32,6 +32,7 @@
+ #endif /* assert.h	*/
+
+ #define	_ASSERT_H	1
++#include <stdlib.h>
+ #include <features.h>
+
+ #if defined __cplusplus && __GNUC_PREREQ (2,95)
+diff --git a/c++/7/iostream b/c++/7/iostream
+index 1d28a00..dad088d 100644
+--- a/c++/7/iostream
++++ b/c++/7/iostream
+@@ -38,6 +38,8 @@
+ #include <bits/c++config.h>
+ #include <ostream>
+ #include <istream>
++#include <cstring>
++#include <algorithm>
+
+ namespace std _GLIBCXX_VISIBILITY(default)
+ {
+diff --git a/stdio.h b/stdio.h
+index 95bc902..587c9ba 100644
+--- a/stdio.h
++++ b/stdio.h
+@@ -868,3 +868,7 @@ extern void funlockfile (FILE *__stream) __THROW;
+ __END_DECLS
+
+ #endif /* <stdio.h> included.  */
++
++#undef R_INLINE
++#define R_INLINE
++
