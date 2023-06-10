@@ -162,4 +162,4 @@ RUN R -q -e '.libPaths("/rlib/1.5.0"); library(igraph); g <- make_ring(3, direct
 
 RUN ls /rlib | parallel -q R -q -e '.libPaths("/rlib/{}"); library(igraph); igraph:::print.igraph(readRDS("ring.rds"))' || true
 
-WORKDIR /igraph-forensics
+WORKDIR /rigraph-forensics
