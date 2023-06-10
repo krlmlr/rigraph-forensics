@@ -2,11 +2,6 @@ options(conflicts.policy = list(warn = FALSE))
 
 library(tidyverse)
 
-version_tags <- readRDS("bionic/tags.rds")
-
-# commits_list <-
-#   map(version_tags$commit$sha, ~ gh::gh(paste0("/repos/cran/igraph/commits/", .x)))
-
 graphs <- readRDS("bionic/graphs-linux.rds")
 
 result <-
@@ -19,17 +14,14 @@ stopifnot(all(result$success))
 
 result_dict <-
   result |>
-  select(-success)
+  select(-success) |>
+  arrange(desc(as.package_version(name)))
 
 result_vec <-
   result_dict |>
   deframe()
 
-version_results <-
-  version_tags |>
-  left_join(result_dict, by = join_by(name))
-
-version_results |>
+result_dict |>
   select(name, result) |>
   mutate(prev_result = lead(result)) |>
   mutate(same = map2_lgl(result, prev_result, identical)) |>
@@ -53,7 +45,7 @@ scrub_id <- function(g) {
 }
 
 delta <-
-  version_results |>
+  result_dict |>
   mutate(prev_name = lead(name)) |>
   select(name, prev_name, result) |>
   mutate(result = map(result, scrub_id)) |>
