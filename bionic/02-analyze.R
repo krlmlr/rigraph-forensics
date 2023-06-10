@@ -51,7 +51,7 @@ delta <-
   mutate(result = map(result, scrub_id)) |>
   mutate(prev_result = lead(result)) |>
   mutate(same = map2_lgl(result, prev_result, identical, ignore.environment = TRUE)) |>
-  mutate(compare = map2(result, prev_result, waldo::compare)) |>
+  mutate(compare = map2(prev_result, result, waldo::compare)) |>
   filter(!same)
 
 delta
