@@ -156,7 +156,7 @@ RUN cd /usr/include && patch -p1 -R < /usr-include.patch
 
 RUN R -q -e 'pak::pak("igraph/rigraph@1e851bafb0097451594ae0e8c7cf96a827b75754", lib = "/rlib/1.5.0")'
 
-RUN ls /rlib | parallel -q R -q -e '.libPaths("/rlib/{}"); packageVersion("igraph"); library(igraph)' || true
+RUN ls /rlib | parallel -q R -q -e '.libPaths("/rlib/{}"); packageVersion("igraph"); library(igraph)'
 
 RUN R -q -e '.libPaths("/rlib/1.5.0"); library(igraph); g <- make_ring(3, directed = TRUE); saveRDS(g, "ring.rds")' || true
 
