@@ -118,7 +118,7 @@ RUN R -q -e 'pak::pak("igraph@0.2.1", lib = "/rlib/0.2.1")'
 
 RUN R -q -e 'pak::pak("igraph@0.2", lib = "/rlib/0.2")'
 
-# Need to get dependencies in place before messing with the system headers
+# Get dependencies in place before messing with the system headers
 RUN R -q -e 'try(pak::pak("igraph@1.0.0", lib = "/rlib/1.0.0"))'
 
 COPY "usr-include.patch" /

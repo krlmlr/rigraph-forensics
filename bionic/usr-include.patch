@@ -2,12 +2,14 @@ diff --git a/x86_64-linux-gnu/sys/time.h b/x86_64-linux-gnu/sys/time.h
 index 4166a5b..5d40745 100644
 --- a/x86_64-linux-gnu/sys/time.h
 +++ b/x86_64-linux-gnu/sys/time.h
-@@ -65,8 +65,6 @@ typedef void *__restrict __timezone_ptr_t;
+@@ -65,8 +65,8 @@ typedef void *__restrict __timezone_ptr_t;
     Returns 0 on success, -1 on errors.
     NOTE: This form of timezone information is obsolete.
     Use the functions and variables declared in <time.h> instead.  */
 -extern int gettimeofday (struct timeval *__restrict __tv,
 -			 __timezone_ptr_t __tz) __THROW __nonnull ((1));
++extern int gettimeofday (struct timeval *__restrict __tv,
++			 void* dummy) __THROW __nonnull ((1));
 
  #ifdef __USE_MISC
  /* Set the current time of day and timezone information.
