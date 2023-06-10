@@ -44,9 +44,9 @@ RUN R -q -e 'pak::pak("igraph@0.4.4", lib = "/rlib/0.4.4")'
 
 RUN R -q -e 'pak::pak("igraph@0.4.5", lib = "/rlib/0.4.5")'
 
-RUN R -q -e 'pak::pak("igraph@0.5", lib = "/rlib/0.5")'
-
 RUN R -q -e 'pak::pak("igraph@1.0.0", lib = "/rlib/1.0.0")'
+
+RUN R -q -e 'pak::pak("igraph@0.5", lib = "/rlib/0.5")'
 
 # Undo patch before installing dev version
 RUN cd /usr/include && patch -p1 -R < /usr-include.patch
