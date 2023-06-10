@@ -125,31 +125,31 @@ COPY "usr-include.patch" /
 
 RUN cd /usr/include && patch -p1 < /usr-include.patch
 
-RUN R -q -e 'try(pak::pak("igraph@1.0.0", lib = "/rlib/1.0.0"))'
+RUN R -q -e 'pak::pak("igraph@1.0.0", lib = "/rlib/1.0.0")'
 
-RUN R -q -e 'try(pak::pak("igraph@0.5", lib = "/rlib/0.5"))'
+RUN R -q -e 'pak::pak("igraph@0.5", lib = "/rlib/0.5")'
 
-RUN R -q -e 'try(pak::pak("igraph@0.4.5", lib = "/rlib/0.4.5"))'
+RUN R -q -e 'pak::pak("igraph@0.4.5", lib = "/rlib/0.4.5")'
 
-RUN R -q -e 'try(pak::pak("igraph@0.4.4", lib = "/rlib/0.4.4"))'
+RUN R -q -e 'pak::pak("igraph@0.4.4", lib = "/rlib/0.4.4")'
 
-RUN R -q -e 'try(pak::pak("igraph@0.4.3", lib = "/rlib/0.4.3"))'
+RUN R -q -e 'pak::pak("igraph@0.4.3", lib = "/rlib/0.4.3")'
 
-RUN R -q -e 'try(pak::pak("igraph@0.4.2", lib = "/rlib/0.4.2"))'
+RUN R -q -e 'pak::pak("igraph@0.4.2", lib = "/rlib/0.4.2")'
 
-RUN R -q -e 'try(pak::pak("igraph@0.4.1", lib = "/rlib/0.4.1"))'
+RUN R -q -e 'pak::pak("igraph@0.4.1", lib = "/rlib/0.4.1")'
 
-RUN R -q -e 'try(pak::pak("igraph@0.4", lib = "/rlib/0.4"))'
+RUN R -q -e 'pak::pak("igraph@0.4", lib = "/rlib/0.4")'
 
-RUN R -q -e 'try(pak::pak("igraph@0.3.3", lib = "/rlib/0.3.3"))'
+RUN R -q -e 'pak::pak("igraph@0.3.3", lib = "/rlib/0.3.3")'
 
-RUN R -q -e 'try(pak::pak("igraph@0.3.2", lib = "/rlib/0.3.2"))'
+RUN R -q -e 'pak::pak("igraph@0.3.2", lib = "/rlib/0.3.2")'
 
-RUN R -q -e 'try(pak::pak("igraph@0.3.1", lib = "/rlib/0.3.1"))'
+RUN R -q -e 'pak::pak("igraph@0.3.1", lib = "/rlib/0.3.1")'
 
-RUN R -q -e 'try(pak::pak("igraph@0.1.2", lib = "/rlib/0.1.2"))'
+RUN R -q -e 'pak::pak("igraph@0.1.2", lib = "/rlib/0.1.2")'
 
-RUN R -q -e 'try(pak::pak("igraph@0.1.1", lib = "/rlib/0.1.1"))'
+RUN R -q -e 'pak::pak("igraph@0.1.1", lib = "/rlib/0.1.1")'
 
 RUN ls /rlib | parallel -q R -q -e '.libPaths(normalizePath("/rlib/{}")); packageVersion("igraph"); library(igraph)' || true
 
