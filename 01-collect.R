@@ -1,4 +1,4 @@
-# pak::pak(c("purrr", "tibblify", "gh", "dplyr", "callr"))
+# To be run in the container
 
 options(conflicts.policy = list(warn = FALSE))
 
