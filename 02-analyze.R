@@ -32,13 +32,13 @@ scrub_id <- function(g) {
   cl <- class(g)
   g <- unclass(g)
   if (length(g) >= 10) {
+    g[[10]] <- as.list(g[[10]], all.names = TRUE)
     if (!is.null(g[[10]]$myid)) {
       g[[10]]$myid <- "<myid>"
     }
     if (!is.null(g[[10]]$me)) {
       g[[10]]$me <- "<me>"
     }
-    g[[10]] <- as.list(g[[10]], all.names = TRUE)
   }
   class(g) <- cl
   g

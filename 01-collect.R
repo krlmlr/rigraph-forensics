@@ -7,8 +7,6 @@ library(purrr)
 version_tags <- dir("/rlib")
 
 create_ring <- function(tag) {
-  .libPaths(file.path("/rlib", tag))
-
   try({
     library(igraph)
 
@@ -26,6 +24,11 @@ create_ring <- function(tag) {
 
 my_tags <- set_names(version_tags)
 
-graphs <- map(map(my_tags, as.list), safely(callr::r, quiet = FALSE), func = create_ring, .progress = TRUE)
+graphs <- map(
+  my_tags,
+  safely(call_igraph, quiet = FALSE),
+  !!body(create_ring),
+  .progress = TRUE
+)
 
 saveRDS(graphs, "graphs-linux.rds")
