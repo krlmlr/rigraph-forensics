@@ -16,7 +16,10 @@ oldsample_1_5_0 <- function() {
     ..env.1..
   ) %>%
     structure(class = "igraph")
-  ..env.1..$igraph <- constructive::.xptr("0x0")
+
+  # This will be reconstructed on demand.
+  # ..env.1..$igraph <- constructive::.xptr("0x0")
+
   ..env.1..$.__igraph_version__. <- "1.5.0"
   ..env.1..$myid <- "0fb28c05-9cc1-4a24-ba62-f5c319a3051b"
   ..env.1..$me
