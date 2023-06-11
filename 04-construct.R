@@ -5,7 +5,8 @@ delta <- readRDS("igraph-versions.rds")
 fs::dir_create("old")
 
 # White lie
-delta$result[[1]][[10]]$myid <- delta$result[[2]][[10]]$myid
+delta$result[[1]][[10]]$myid <- "0fb28c05-9cc1-4a24-ba62-f5c319a3051b"
+delta$result[[2]][[10]]$myid <- "0fb28c05-9cc1-4a24-ba62-f5c319a3051b"
 
 code <-
   delta |>

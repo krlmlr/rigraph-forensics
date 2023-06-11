@@ -16,6 +16,8 @@ create_ring <- function(tag) {
     try({
       E(g)$foo <- letters[1:3]
       V(g)$bar <- LETTERS[1:3]
+      # Update "me" environment element
+      invisible(E(g))
     })
 
     g
