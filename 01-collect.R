@@ -11,7 +11,7 @@ create_ring <- function(tag) {
     library(igraph)
 
     # Old name for make_ring()
-    g <- graph.ring(3)
+    g <- graph.ring(3, directed = TRUE)
 
     try({
       E(g)$foo <- letters[1:3]
