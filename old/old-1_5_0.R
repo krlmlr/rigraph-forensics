@@ -10,8 +10,10 @@ oldsample_1_5_0 <- function() {
     NULL,
     NULL,
     list(
-      c(1, 0, 1), list(name = "Ring graph", mutual = FALSE, circular = TRUE),
-      list(bar = c("A", "B", "C")), list(foo = c("a", "b", "c"))
+      c(1, 0, 1),
+      list(name = "Ring graph", mutual = FALSE, circular = TRUE),
+      list(bar = c("A", "B", "C")),
+      list(foo = c("a", "b", "c"))
     ),
     ..env.1..
   ) %>%
